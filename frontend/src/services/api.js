@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Backend ka base URL (jo humne pehle banaya tha)
 // Backend port 5000 par chal raha hai
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://oxygen-technologies.onrender.com/api";
 
 // Axios instance create kiya (taake baar baar base URL na likhna pade)
 const api = axios.create({
