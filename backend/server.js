@@ -22,18 +22,12 @@ const app = express();
 app.use(express.json());
 
 // CORS setup - Allow frontend to connect
-app.use(
-  cors({
-    origin: [
-      "https://oxyge-technologies.vercel.app", // Live frontend
-      "http://localhost:5173", // Local frontend
-      "http://localhost:3000", // Alternative local
-    ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+app.use(cors({
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // ==================== 6. IMAGE UPLOAD SETUP ====================
 const storage = multer.diskStorage({
