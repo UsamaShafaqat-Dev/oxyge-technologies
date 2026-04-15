@@ -24,11 +24,20 @@ app.use(express.json());
 // CORS setup - Allow frontend to connect
 // CORS setup - Allow all origins (temporary fix)
 // CORS - Allow all
+// FORCE CORS - FIX FOR DEPLOYMENT
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  if (req.method === 'OPTIONS') {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://oxyge-technologies.vercel.app",
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS",
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
     return res.sendStatus(200);
   }
   next();
