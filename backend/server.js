@@ -25,10 +25,18 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: [
-      "https://oxyge-technologies-1zozmy1b9-usamashafaqat-devs-projects.vercel.app",
-      "http://localhost:3000",
-    ],
+    origin: function (origin, callback) {
+      // Ye line har Vercel link aur localhost ko allow karegi
+      if (
+        !origin ||
+        origin.includes(".vercel.app") ||
+        origin.includes("localhost")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
