@@ -21,27 +21,17 @@ const app = express();
 // ==================== 5. MIDDLEWARE ====================
 app.use(express.json());
 
-// CORS setup - Allow frontend to connect
-// CORS setup - Allow all origins (temporary fix)
-// CORS - Allow all
-// FORCE CORS - FIX FOR DEPLOYMENT
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://oxyge-technologies.vercel.app",
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS",
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+const cors = require("cors");
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+app.use(
+  cors({
+    origin: [
+      "https://oxyge-technologies-1zozmy1b9-usamashafaqat-devs-projects.vercel.app",
+      "http://localhost:3000",
+    ],
+    credentials: true,
+  }),
+);
 
 // ==================== 6. IMAGE UPLOAD SETUP ====================
 const storage = multer.diskStorage({
